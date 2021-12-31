@@ -1,7 +1,7 @@
 package ch7;
 
 // 상속 예제(extends)
-class Employee{
+class Employee /*extends Object*/{  
 	int id;
 	String name;
 	double pay;
@@ -16,6 +16,11 @@ class Manager extends Employee{
 	String jobOfManage;
 	void getManage() {
 		System.out.println(name + "매니저는 " + jobOfManage + "입니다.");
+	}
+	// work기능을 manager에서 재정의(오버라이딩)하면 본인(즉, 자식) 클래스 내 메서드가 우선되어 실행.
+	void work() {
+		System.out.println(id + "사번의 사원명은 " + name + "이고 급여는 " + pay +"입니다.");
+		System.out.println("관리업무는 " + jobOfManage); 
 	}
 }
 
