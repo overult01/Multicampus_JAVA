@@ -18,7 +18,17 @@ class Singleton {
 		return me;
 	}
 }
- 
+
+class FinalClass{
+	final double pi; // 선언만. final이 없으면 자동초기화됨 (필드변수는 자동초기화됨) 
+//	double pi;
+	
+	// 생성자에서 값을 초기화하든지, 클래스 내부에서 초기화하든지 해야한다. 
+	FinalClass() {
+		pi = 3.14;
+	}
+	
+}
 public class SingletonTest {
 
 	public static void main(String[] args) {
@@ -31,6 +41,10 @@ public class SingletonTest {
 		Singleton s1 = Singleton.getInstance();
 		Singleton s2 = Singleton.getInstance();
 		Singleton s3 = Singleton.getInstance();
+		
+		FinalClass fc = new FinalClass();
+//		fc.pi = 12345;   // final 이 붙은 변수는 값을 수정할 수 없다. 
+		System.out.println(fc.pi);
 	}
 
 }
