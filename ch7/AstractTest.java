@@ -24,7 +24,7 @@ class Rectangle extends Shape{
 
 	@Override
 	public void circum() {
-		System.out.println("가로 = " + width + "세로 = " + height+ "사각형의 둘레: " + 2*(width + height));
+		System.out.println("가로 = " + width + "세로 = " + height+ "인 사각형의 둘레: " + 2*(width + height));
 	};	 
 }
 
@@ -50,15 +50,56 @@ class Circle extends Shape{
 	
 }
 
+// 별개 예제 - 형변환과 오버라이딩 
+class Parent {
+	String name = "부모";
+	void tellName() {
+		System.out.println(name);
+	}
+}
+
+class Child extends Parent{
+	int su = 2;
+	void tellSu() {
+		System.out.println(su);
+	}
+	
+	// 오버라이딩 
+	void tellName() {
+		System.out.println("자식");
+	}
+}
+
 public class AstractTest {
 
 	public static void main(String[] args) {
+		
+		Parent p = new Child(); // 자동형변환 
+		p.tellName(); // 자식: 타입이 Parent이지만, 호출하는 메서드가 오버라이딩 된 메서드이면 자식 메서드가 호출된다. 
+		System.out.println(p.name); // 부모: 부모클래스의 변수 유지. (오버라이딩은 메서드만 해당되므로.) 오버라이딩 된 것이 아니라면 무조건 부모클래스 것을 가져온다. 
+		////////////
 		Shape s1 = new Rectangle(5, 6);  // 가로 5, 세로 6인 사각형 
 		Shape s2 = new Circle(6);
-		s1.area();
-		s1.circum();
-		s2.area();
-		s2.circum();
+		Shape s3 = new Circle(7);
+		Shape s4 = new Rectangle(10, 15);
+
+		Shape ar[] = new Shape[4];
+//		Shape ar = new Shape();  // abstract 클래스는 직접적인 객체 생성 불가이다.
+		ar[0] = s1;
+		ar[1] = s2;
+		ar[2] = s3;
+		ar[3] = s4;
+		
+		for(int i = 0; i <ar.length; i++) {
+			ar[i].area();
+			ar[i].circum();
+//			System.out.println(ar[i].radius);  // Shape 타입에는 radius가 없다. 따라서 불가 
+			if(ar[i] instanceof Circle) {
+				Circle c = (Circle)ar[i];  // 명시적인 형변환: 자식 클래스인 Circle 클래스의 필드, 메서드 사용하기 위해서 .
+				System.out.println("원의 반지름: "+ c.radius);
+			}
+		}
+		
 	}
 
 }
