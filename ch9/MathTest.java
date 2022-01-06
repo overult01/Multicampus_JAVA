@@ -25,6 +25,18 @@ public class MathTest {
 		int ran3 = rd.nextInt(101); // Int 타입의 난수 발생. 0~100 사이의 정수 중 난수 발생. 
 		System.out.println(ran3);
 
+		// warrper 클래스 
+
+		//wrapper클래스: 기본형 변수값을 객체상태로 포장한 클래스. 참조형처럼.
+		// 기본형 타입 8개에 맞게 8개가 존재. 
+		// 보통 타입 변환에 많이 쓴다.
+		boolean r1 = Boolean.parseBoolean("TrUE");
+		System.out.println(r1);
+		System.out.println(Integer.toBinaryString(10)); // 2진수로 바꿔라 
+		int max = Integer.MAX_VALUE;
+		int min = Integer.MIN_VALUE;
+		System.out.println(max);  // 2147483647 (= 2^31 - 1)
+		System.out.println(min);  // -2147483648 (= - 2^31)
 	}
 
 }
