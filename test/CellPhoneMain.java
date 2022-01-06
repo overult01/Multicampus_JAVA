@@ -12,36 +12,29 @@ class CellPhone {
 	}
 	
 	// 통화 시간(분)을 출력하고, 통화 시간에 따라 배터리 양을 감소시킨다.
-	void call(int time) {
+	void call(int time) throws IllegalArgumentException{
 
-		try {
-			battery -= time * 0.5;
-			if (battery < 0) {
-				battery = 0;
-				throw new IllegalAccessError("통화시간입력오류");  // 출력이 안되고 있는 모습 
-			}
-			else {
-				System.out.println("통화 시간: " + time);
-			}
+		if(time < 0) {
+			throw new IllegalArgumentException("통화시간입력오류");
 		}
-		catch (IllegalAccessError error) {
-			System.out.println("통화시간입력오류2");
+		System.out.println("통화시간: " + time);
+		battery -= time * 0.5;
+		if (battery < 0) {
+			battery = 0;
 		}
 	}
+		
+	
 	
 	// 충전한 시간(분)을 출력하고, 충전한 시간에 따라 배터리 양을 증가시킨다.
 	void charge(int time) throws IllegalArgumentException{
-		try {
-			battery += time * 3;  // 100까지로 수정필요 
-			if (battery > 100) {
-				throw new IllegalAccessError("충전시간입력오류");
-			}
-			else {
-				System.out.println("충전 시간: " + time);
-			}
-		}
-		catch (IllegalAccessError error) {
-			System.out.println("충전시간입력오류");			
+		if (time > 100) {
+			throw new IllegalArgumentException("충전시간 입력오류");
+		}	
+		System.out.println("충전시간: " + time);
+		battery += time * 3;  // 100까지로 수정필요 
+		if (battery > 100) {
+				battery = 100;
 		}
 	}
 
@@ -50,18 +43,12 @@ class CellPhone {
 	}
 	
 	
-//boolean  isSame(CellPhone other)	
-////CellPhone 타입의 객체를 입력받고 (??), 입력받은 객체의
+////CellPhone 타입의 객체를 입력받고, 입력받은 객체의
 ////모델 번호가 같은 경우에 true를 리턴한다.
 
 	boolean isSame(CellPhone other) {
 //		if ((other).equalsIgnoreCase(model.toString())) {
-		if (other.model.equalsIgnoreCase(model)) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return this.model.equalsIgnoreCase(other.model); 
 		
 	}
 }
@@ -89,20 +76,24 @@ public static void main(String[] args) {
 // throws 하고 있는 예외 처리한다.
 // 각 예외 발생시 어떤 메소드에서 어떤 원인으로 발생했는지 출력한다
 
-
-		myPhone.charge( 20 );  //20분간 충전을 한다.
-		myPhone.printBattery();
+		try {
+			myPhone.charge( 20 );  //20분간 충전을 한다.
+			myPhone.printBattery();
 		
-		myPhone.call( 300 );  //300분간 통화를 한다. (???? 말이 안되는데. 통화시간입력 오류가 나왔어야) 
-		myPhone.printBattery();
+			myPhone.call( 300 );  //300분간 통화를 한다. (???? 말이 안되는데. 통화시간입력 오류가 나왔어야) 
+			myPhone.printBattery();
 		
-		myPhone.charge( 50 );  //50분간 충전을 한다.
-		myPhone.printBattery();
+			myPhone.charge( 50 );  //50분간 충전을 한다.
+			myPhone.printBattery();
 		
-		myPhone.call( 40 );  //40분간 통화를 한다.
-		myPhone.printBattery();
+			myPhone.call( 40 );  //40분간 통화를 한다.
+			myPhone.printBattery();
 		
-		myPhone.call( -20 );  //통화시간입력오류
+			myPhone.call( -20 );  //통화시간입력오류
+		}
+		catch(IllegalArgumentException error) {
+			System.out.println(error.getMessage());
+		}
 		
 		CellPhone yourPhone = new CellPhone("galaxy-9");
 		
