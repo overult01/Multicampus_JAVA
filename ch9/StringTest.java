@@ -25,7 +25,15 @@ class StringTest {
 		
 	System.out.println("6. Last Name " + last + "의 index 번호 6~13까지 문자열 : " + last.substring(6, 14));
 	System.out.println("7. Last Name " + last + "에서 negger 문자열의 위치 : " + last.indexOf("negger"));		
-	}
+
+	// 스트링 버퍼 예제
+	StringBuffer sb1 = new StringBuffer();
+	sb1.append("StirngBuffer");  // 만약 매개변수가 16자리가 넘으면 스트링버퍼가 capacity를 자동으로 늘림. 
+	System.out.println(sb1.length());  // 12  // String에서도 사용가능
+	System.out.println(sb1.capacity()); // 16. 스트링 버퍼가 문자열을 저장할 수 있는 공간의 크기.
+	
+	
+  	}
 }
 
 //JAVA API를 사용하여 다음과 같은 결과가 나오도록 빈칸을 채우십시오. 단, 빈칸은 반드시 적절한 메소드를 사용해서 채워져야 합니다.
@@ -40,5 +48,4 @@ class StringTest {
 //6. Last Name Schwarzenegger의 index 번호 6~13까지 문자열 : zenegger
 //7. Last Name Schwarzenegger에서 negger 문자열의 위치 : 8
 //---------------------------
-
 
