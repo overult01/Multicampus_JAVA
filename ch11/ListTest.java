@@ -58,7 +58,7 @@ public class ListTest {
 		
 		
 		System.out.println("================");
-		for (Object one /*list내부 데이터 타입*/ : list) {
+		for (Object one /*list내부 데이터 타입*/ : list) { // list에서 Object 타입으로 one이라는 이름으로 꺼내서 반복 
 			System.out.println(one);
 		}
 		
