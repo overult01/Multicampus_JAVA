@@ -5,51 +5,38 @@ import java.util.List;
 // 배열은 고정길이. 
 class SameSentence {
 
-	SameSentend(list1, list2) {
-		
-	}
 
 	// compare 메서드 
 	String[] compare(List<String> list1, List<String> list2){
 		
+		// 동일 값 저장용
+		ArrayList<String> resultList = new ArrayList();
 
-		// 리스트 만들고 -> 배열로 바꾸기
 		// 참고자료 : https://mommoo.tistory.com/32
-		List list = new ArrayList();
-		if (list1.size() == list1.size()) { // 사이즈 확인 
-			for (int i = 0; i < list1.size(); i ++) {
-				if (list1.get(i) == list2.get(i)) {  // 리스트를 인덱스로 조회하려면 : get(인덱스) 메서드
-					list.add(list1.get(i));
-				}
-			}
+		int len1 = list1.size();
+		int len2 = list2.size();
+		if (len1 > len2) {
+			len1 = len2;   // len1만큼만 비교하기 위해 
 		}
 		
-		else {
-			int len = 0;
-			if (list1.size() >= list2.size()) {
-				len = list2.size();
-			}
-			else {
-				len = list1.size();
-			}
-			
-			for (int i = 0; i < len; i ++) {
-				if (list1.get(i) == list2.get(i)) {  // 리스트를 인덱스로 조회하려면 : get(인덱스) 메서드
-					list.add(list1.get(i));
-				}
-			}
-		}
-		
-		//ArrayList -> 배열로 바꾸기 .
-		String[] array = (String[]) list.toArray(new String[list.size()]);
-
 		// list1과 list2 저장 데이터 갯수 비교한다
 		//갯수 일치하면 list1, list2 모든 데이터를 각 인덱스별 비교하며 동일하면
-                            //String 배열 저장하고 리턴
+        //String 배열 저장하고 리턴
 
 		//갯수 일치하지 않으면 list1, list2 더 작은 갯수의 list 갯수만큼 데이터를 각 인덱스별 비교하며 동일하면
-                            //String 배열 저장하고 리턴
-		return array;
+        //String 배열 저장하고 리턴
+		
+		for (int i =0; i < len1; i++) {
+			if (list1.get(i).equals(list2.get(i))) {
+				resultList.add(list1.get(i)); // 리스트를 인덱스로 조회하려면 : get(인덱스) 메서드
+			}
+		}
+				
+		//ArrayList -> 배열로 바꾸기 : toArray메서드 사용. 제너릭스가 선언 안되어있으면 Object타입, 선언되어있으면 그 타입으로 반환해준다.
+		String[] resultArray = new String[len1];  // 배열의 길이는 len1만큼 생성.
+		resultList.toArray(resultArray);
+
+		return resultArray;
 	}	
 }
 
@@ -75,14 +62,24 @@ public class SameSentenceTest {
 		
 		SameSentence ss = new SameSentence();
 		System.out.println("list1, list2에서 같은 내용을 출력합니다");
-		ss.compare(list1, list2);
+		String[] first = ss.compare(list1, list2);
+		for (String s: first) {  // 향상된 For문
+			if (s != null) {
+				System.out.println(s);
+			}
+		}
 	/*
 	자바는 객체지향 언어입니다
 	내일은 스레드를 배울 예정입니다 
 	*/
 		System.out.println("================================");
 		System.out.println("list1, list3에서 같은 내용을 출력합니다");
-		ss.compare(list1, list3);
+		String[] second = ss.compare(list1, list3);
+		for (String s: second) {
+			if (s != null) {
+				System.out.println(s);
+			}
+		}
 	/*
 	자바는 객체지향 언어입니다
 	오늘은 컬렉션 프레임워크를 배우죠!
