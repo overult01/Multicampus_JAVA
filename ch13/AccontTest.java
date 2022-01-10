@@ -32,6 +32,8 @@ class CustomerThread extends Thread{
 	}
 }
 
+// wa
+
 public class AccontTest {
 
 	public static void main(String[] args) {
