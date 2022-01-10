@@ -13,7 +13,13 @@ class MyThread1 extends Thread /*1. 쓰레드 상속받는다*/{
 	@Override
 	public void run() {
 		System.out.println(getName());  // 쓰레드 클래스 내 getName메서드. 자동으로 쓰레드의 번호를 붙여준다. // Thread-0
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
+			try {
+				Thread.sleep(1000); // 1초씩 sleep
+			}
+			catch(InterruptedException error) {
+				error.printStackTrace();  // 에러 발생의 원인을 알려줘 
+			}
 			System.out.print("!");
 		}
 	}
@@ -31,7 +37,14 @@ class MyThread2 extends Thread /*1. 쓰레드 상속받는다*/{
 	@Override
 	public void run() {
 		System.out.println(getName());  // 쓰레드 클래스 내 getName메서드.  자동으로 쓰레드의 번호를 붙여준다. // Thread-1  
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
+
+			try {
+				Thread.sleep(2000); // 1초씩 sleep
+			}
+			catch(InterruptedException error) {
+				error.printStackTrace();  // 에러 발생의 원인을 알려줘 
+			}
 			System.out.print("#");
 		}
 	}
